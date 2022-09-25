@@ -9,19 +9,15 @@ const months = [
 
 function showTimer() {
    const date = new Date();
-   console.log(date)
 
-   const hour = date.getHours();
-   const mins = date.getMinutes();
-   const secs = date.getSeconds();
-   if(secs < 10) {
-      timeText.textContent = `${hour}:${mins}:0${secs}`;
-   }
-   if(hour > 12){
-      timeText.textContent = `0${hour-12}:${mins}:${secs}`;
-   }else {
-      timeText.textContent = `${hour}:${mins}:${secs}`;
-   }
+   let hour = date.getHours();
+   if(hour > 12) { hour -= 12; }
+   let mins = date.getMinutes();
+   if(mins < 10) { mins = `0${mins}` };
+   let secs = date.getSeconds();
+   if(secs < 10) {secs = `0${secs}`};
+   if(hour < 10) {timeText.textContent = `0${hour}:${mins}:${secs}`}
+   else {timeText.textContent = `${hour}:${mins}:${secs}`};
 
    const month = months[date.getMonth()];
    const day = date.getDate();
